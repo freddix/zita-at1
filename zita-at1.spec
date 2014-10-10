@@ -1,13 +1,12 @@
 Summary:	Zita autotuner
 Name:		zita-at1
-Version:	0.2.3
-Release:	2
+Version:	0.4.0
+Release:	1
 License:	GPL v2
 Group:		X11/Applications/Sounds
 Source0:	http://kokkinizita.linuxaudio.org/linuxaudio/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	d901f378da09407b550c72b2607cc97f
+# Source0-md5:	4e068b6cd9ceea981f7c9000a568fbe7
 Patch0:		%{name}-make.patch
-Patch1:		%{name}-resampler.patch
 BuildRequires:	cairo-devel
 BuildRequires:	clthreads-devel
 BuildRequires:	clxclient-devel
@@ -26,11 +25,11 @@ singing (slightly) out of tune.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} -C source \
 	CXX="%{__cxx}"		\
+	LDFLAGS="%{rpmldflags}"	\
 	OPTFLAGS="%{rpmcflags}"	\
 	PREFIX=%{_prefix}
 
